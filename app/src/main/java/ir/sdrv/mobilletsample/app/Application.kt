@@ -1,10 +1,12 @@
-package ir.sdrv.mobilletsample
+package ir.sdrv.mobilletsample.app
 
 import android.app.Application
-import ir.sdrv.mobilletsample.modules.*
+import ir.sdrv.mobilletsample.BuildConfig
+import ir.sdrv.mobilletsample.app.modules.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import timber.log.Timber
 
 class Application: Application() {
 
@@ -15,8 +17,14 @@ class Application: Application() {
             androidLogger()
             androidContext(this@Application)
             modules(listOf(
-                usersListViewModel
+                usersListViewModel,
+                githubApiModule,
+                githubApiClientModule
             ))
+        }
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
         }
     }
 
