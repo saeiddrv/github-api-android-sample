@@ -1,51 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                   xmlns:tools="http://schemas.android.com/tools"
-                                   android:layout_width="match_parent"
-                                   android:layout_height="wrap_content">
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/normal_margin"
+        android:gravity="center_vertical">
+
+    <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription"/>
 
     <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:padding="@dimen/normal_margin"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/small_margin">
 
-        <ImageView
-                android:id="@+id/imgAvatar"
-                android:layout_width="@dimen/avatar_size"
-                android:layout_height="@dimen/avatar_size"
-                android:scaleType="centerCrop"
-                tools:ignore="ContentDescription"/>
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtName"
+                android:textSize="@dimen/large_font"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtHomeUrl"
+                android:textSize="@dimen/small_font"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginStart="@dimen/small_margin">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtName"
-                    android:textSize="@dimen/large_font"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtHomeUrl"
-                    android:textSize="@dimen/small_font"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="@dimen/small_margin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/small_margin"
-                    android:background="@drawable/home_url_text_view_background"/>
-
-        </LinearLayout>
+                android:padding="@dimen/small_margin"
+                android:background="@drawable/home_url_text_view_background"/>
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</LinearLayout>
