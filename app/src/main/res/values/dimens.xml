@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="large_margin">32dp</dimen>
+    <dimen name="normal_margin">16dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+
+    <dimen name="avatar_size">64dp</dimen>
+
+    <dimen name="large_font">18sp</dimen>
+    <dimen name="normal_font">14sp</dimen>
+    <dimen name="small_font">12sp</dimen>
+
+</resources>

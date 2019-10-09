@@ -19,7 +19,8 @@ class Application: Application() {
             modules(listOf(
                 usersListViewModel,
                 githubApiModule,
-                githubApiClientModule
+                githubApiClientModule,
+                usersListDataSourceFactory
             ))
         }
 
