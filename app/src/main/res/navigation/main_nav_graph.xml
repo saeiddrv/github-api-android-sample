@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/main_nav_graph"
+            app:startDestination="@id/usersListFragment">
+
+    <fragment android:id="@+id/usersListFragment"
+              android:name="ir.sdrv.mobilletsample.presentation.view.UsersListFragment"
+              android:label="@string/users_list_fragment_title"
+              tools:layout="@layout/users_list_fragment"/>
+</navigation>

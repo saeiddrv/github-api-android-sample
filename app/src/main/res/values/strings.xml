@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MobilletSample</string>
+
+    <string name="users_list_fragment_title">Github users</string>
 </resources>
