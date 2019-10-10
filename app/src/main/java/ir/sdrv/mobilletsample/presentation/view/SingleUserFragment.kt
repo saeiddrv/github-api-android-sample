@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import ir.sdrv.mobilletsample.R
 import ir.sdrv.mobilletsample.databinding.SingleUserFragmentBinding
 import ir.sdrv.mobilletsample.presentation.viewmodel.SingleUserViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import android.content.Intent
+import android.net.Uri
 
 class SingleUserFragment : Fragment() {
 
@@ -30,9 +33,20 @@ class SingleUserFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         arguments?.let {
             val username: String = SingleUserFragmentArgs.fromBundle(it) .username
             singleUserViewModel.getUserInfoByUsername(username)
+        }
+
+        singleUserViewModel.pageUrl.observe(this, Observer {
+            openInBrowser(it)
+        })
+    }
+
+    private fun openInBrowser(pageUrl: String?) {
+        pageUrl?.let {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it)))
         }
     }
 

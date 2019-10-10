@@ -6,4 +6,18 @@
 
     <string name="msg_users_list_is_empty">Empty!</string>
     <string name="msg_fetch_users_list_has_error">Has Error!</string>
+
+    <string name="lbl_user_name">Name:</string>
+    <string name="lbl_user_email">Email:</string>
+    <string name="lbl_user_bio">Bio:</string>
+    <string name="lbl_user_followers">Followers:</string>
+    <string name="lbl_user_following">Following:</string>
+    <string name="lbl_user_public_repos">Public Repositories:</string>
+    <string name="lbl_user_public_gists">Public Gists:</string>
+    <string name="lbl_user_created_at">Created at:</string>
+    <string name="lbl_user_updated_at">Updated at:</string>
+    <string name="lbl_user_blog">Blog:</string>
+    <string name="lbl_user_company">Company:</string>
+
+    <string name="btn_see_profile">See profile</string>
 </resources>

@@ -1,6 +1,7 @@
 package ir.sdrv.mobilletsample.presentation.viewmodel
 
 import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.viewModelScope
 import ir.sdrv.mobilletsample.data.remote.api.base.Status
@@ -13,6 +14,7 @@ class SingleUserViewModel(private val githubApiClient: GithubApiClient) : ViewMo
     val isWaiting: ObservableField<Boolean> = ObservableField()
     val errorMessage: ObservableField<String> = ObservableField()
     val githubUserModel: ObservableField<GithubUserModel> = ObservableField()
+    val pageUrl: MutableLiveData<String> = MutableLiveData()
 
     init {
         isWaiting.set(true)
@@ -33,5 +35,9 @@ class SingleUserViewModel(private val githubApiClient: GithubApiClient) : ViewMo
 
             isWaiting.set(false)
         }
+    }
+
+    fun openInBrowser(pageUrl: String?) {
+        this.pageUrl.value = pageUrl
     }
 }
