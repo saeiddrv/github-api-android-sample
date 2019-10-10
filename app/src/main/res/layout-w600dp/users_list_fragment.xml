@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable name="usersListViewModel" type="ir.sdrv.mobilletsample.presentation.viewmodel.UsersListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{safeUnbox(usersListViewModel.isWaiting) ? View.GONE : View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/itemViewer"
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/small_margin"/>
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/large_font"
+                        android:textColor="@color/black"
+                        android:text="@{Long.toString(usersListViewModel.totalCount)}"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/small_font"
+                        android:textColor="@color/gray"
+                        android:text="@string/lbl_total_count"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ProgressBar
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:visibility="@{safeUnbox(usersListViewModel.isWaiting) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

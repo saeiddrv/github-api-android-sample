@@ -20,4 +20,6 @@
     <string name="lbl_user_company">Company:</string>
 
     <string name="btn_see_profile">See profile</string>
+
+    <string name="lbl_total_count">Total Count</string>
 </resources>

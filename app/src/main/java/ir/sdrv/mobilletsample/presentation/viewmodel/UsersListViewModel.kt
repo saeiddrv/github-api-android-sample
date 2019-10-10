@@ -16,6 +16,7 @@ class UsersListViewModel(private val usersListDataSourceFactory: UsersListDataSo
     var dataSource: MutableLiveData<UsersListDataSource>
     lateinit var usersLiveData: LiveData<PagedList<GithubUserModel>>
     val isWaiting: ObservableField<Boolean> = ObservableField()
+    val totalCount: ObservableField<Long> = ObservableField()
 
     init {
         isWaiting.set(true)

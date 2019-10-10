@@ -57,6 +57,11 @@ class UsersListFragment : Fragment(), UsersListAdapter.UsersListAdapterInteracti
                 }
             })
 
+        Transformations.switchMap(usersListViewModel.dataSource) { dataSource -> dataSource.totalCount }
+            .observe(this, Observer {totalCount ->
+                totalCount?.let { usersListViewModel.totalCount.set(it)}
+            })
+
         usersListViewModel.usersLiveData.observe(this, Observer {
             usersListAdapter.submitList(it)
         })

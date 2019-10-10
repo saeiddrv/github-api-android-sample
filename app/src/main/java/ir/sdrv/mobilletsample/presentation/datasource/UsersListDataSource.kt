@@ -12,6 +12,7 @@ class UsersListDataSource(private val githubApiClient: GithubApiClient): PageKey
     private val dataSourceJob = SupervisorJob()
     private val scope = CoroutineScope(Dispatchers.Main + dataSourceJob)
     val loadStateLiveData: MutableLiveData<Status> = MutableLiveData()
+    val totalCount: MutableLiveData<Long> = MutableLiveData()
 
     companion object{
         const val PAGE_SIZE = 15
@@ -20,6 +21,7 @@ class UsersListDataSource(private val githubApiClient: GithubApiClient): PageKey
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, GithubUserModel>) {
         scope.launch {
             loadStateLiveData.postValue(Status.LOADING)
+            totalCount.postValue(0)
 
             val response = githubApiClient.getUsersList(1, PAGE_SIZE)
             when(response.status) {
@@ -29,6 +31,7 @@ class UsersListDataSource(private val githubApiClient: GithubApiClient): PageKey
                     response.data?.let {
                         callback.onResult(it.items, null, 2)
                         loadStateLiveData.postValue(Status.SUCCESS)
+                        totalCount.postValue(it.totalCount)
                     }
                 }
             }
