@@ -41,13 +41,13 @@ data class GithubUserModel(
 ) {
    @SuppressLint("SimpleDateFormat")
    fun getCreatedDateAsString(): String? {
-        val formatter = SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        val formatter = SimpleDateFormat("dd MMMM yyyy, hh:mm:ss");
         return formatter.format(createdAt)
     }
 
     @SuppressLint("SimpleDateFormat")
     fun getUpdatedDateAsString(): String? {
-        val formatter = SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        val formatter = SimpleDateFormat("dd MMMM yyyy, hh:mm:ss");
         return formatter.format(updatedAt)
     }
 }
