@@ -12,7 +12,7 @@ interface GithubApi {
         @Query("per_page") pageSize: Int
     ): Response<GetGithubUserResponseModel>
 
-    @GET("user/{username}")
+    @GET("users/{username}")
     suspend fun getUserInfo(
         @Path("username") username: String
     ): Response<GithubUserModel>
