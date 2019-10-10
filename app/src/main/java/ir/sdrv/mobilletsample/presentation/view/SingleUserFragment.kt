@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import ir.sdrv.mobilletsample.R
 import ir.sdrv.mobilletsample.databinding.SingleUserFragmentBinding
 import ir.sdrv.mobilletsample.presentation.viewmodel.SingleUserViewModel
@@ -32,4 +36,15 @@ class SingleUserFragment : Fragment() {
         }
     }
 
+    object BindingLayoutUtils {
+        @JvmStatic
+        @BindingAdapter("avatar")
+        fun loadAvatar(view: ImageView, imageUrl: String?) {
+            imageUrl?.let {
+                Glide.with(view.context)
+                    .load(it).apply(RequestOptions().circleCrop())
+                    .into(view)
+            }
+        }
+    }
 }

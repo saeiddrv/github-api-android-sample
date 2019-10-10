@@ -1,41 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View"/>
         <variable name="singleUserViewModel" type="ir.sdrv.mobilletsample.presentation.viewmodel.SingleUserViewModel" />
     </data>
 
-    <LinearLayout
-            android:orientation="vertical"
+    <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/normal_margin"
-            android:gravity="center">
+            android:fillViewport="true">
 
         <LinearLayout
                 android:orientation="vertical"
-                android:id="@+id/infoLayouts"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="@{singleUserViewModel.githubUserModel == null ? View.GONE : View.VISIBLE}"
-                android:layout_margin="@dimen/small_margin">
+                android:layout_margin="@dimen/normal_margin"
+                android:gravity="center">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/infoLayouts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{singleUserViewModel.githubUserModel == null ? View.GONE : View.VISIBLE}"
+                    android:layout_margin="@dimen/small_margin">
+
+                <ImageView
+                        android:id="@+id/imgAvatar"
+                        android:layout_width="@dimen/avatar_size_large"
+                        android:layout_height="@dimen/avatar_size_large"
+                        android:scaleType="centerCrop"
+                        android:layout_gravity="center_horizontal"
+                        app:avatar="@{singleUserViewModel.githubUserModel.avatarUrl}}"
+                        tools:ignore="ContentDescription"/>
 
 
+            </LinearLayout>
 
+            <ProgressBar
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:visibility="@{safeUnbox(singleUserViewModel.isWaiting) ? View.VISIBLE : View.GONE}"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="@{singleUserViewModel.errorMessage}"
+                    android:visibility="@{singleUserViewModel.errorMessage == null ? View.GONE : View.VISIBLE}"/>
 
         </LinearLayout>
-
-        <ProgressBar
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:visibility="@{safeUnbox(singleUserViewModel.isWaiting) ? View.VISIBLE : View.GONE}"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="@{singleUserViewModel.errorMessage}"
-                android:visibility="@{singleUserViewModel.errorMessage == null ? View.GONE : View.VISIBLE}"/>
-
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

@@ -6,6 +6,7 @@
     <dimen name="small_margin">8dp</dimen>
 
     <dimen name="avatar_size">64dp</dimen>
+    <dimen name="avatar_size_large">128dp</dimen>
 
     <dimen name="large_font">18sp</dimen>
     <dimen name="normal_font">14sp</dimen>
