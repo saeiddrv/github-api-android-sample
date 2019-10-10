@@ -1,6 +1,7 @@
 package ir.sdrv.mobilletsample.data.remote.api.models
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class GithubUserModel(
     @SerializedName("id") var id: Long,
@@ -21,5 +22,18 @@ data class GithubUserModel(
     @SerializedName("received_events_url") var receivedEventsUrl: String,
     @SerializedName("type") var type: String,
     @SerializedName("site_admin") var siteAdmin: Boolean,
-    @SerializedName("score") var score: Float
+    @SerializedName("score") var score: Float,
+    @SerializedName("name") var name: String,
+    @SerializedName("company") var company: String,
+    @SerializedName("blog") var blog: String,
+    @SerializedName("location") var location: String,
+    @SerializedName("email") var email: String,
+    @SerializedName("hireable") var hireable: String,
+    @SerializedName("bio") var bio: String,
+    @SerializedName("public_repos") var publicRepos: Int,
+    @SerializedName("public_gists") var publicGists: Int,
+    @SerializedName("followers") var followers: Int,
+    @SerializedName("following") var following: Int,
+    @SerializedName("created_at") var createdAt: Date,
+    @SerializedName("updated_at") var updatedAt: Date
 )

@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".presentation.view.SingleUserFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable name="singleUserViewModel" type="ir.sdrv.mobilletsample.presentation.viewmodel.SingleUserViewModel" />
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/normal_margin"
+            android:gravity="center">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/infoLayouts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{singleUserViewModel.githubUserModel == null ? View.GONE : View.VISIBLE}"
+                android:layout_margin="@dimen/small_margin">
 
 
-</FrameLayout>
+
+
+        </LinearLayout>
+
+        <ProgressBar
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:visibility="@{safeUnbox(singleUserViewModel.isWaiting) ? View.VISIBLE : View.GONE}"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="@{singleUserViewModel.errorMessage}"
+                android:visibility="@{singleUserViewModel.errorMessage == null ? View.GONE : View.VISIBLE}"/>
+
+    </LinearLayout>
+</layout>

@@ -20,7 +20,8 @@ class Application: Application() {
                 usersListViewModel,
                 githubApiModule,
                 githubApiClientModule,
-                usersListDataSourceFactory
+                usersListDataSourceFactory,
+                singleUserViewModel
             ))
         }
 
