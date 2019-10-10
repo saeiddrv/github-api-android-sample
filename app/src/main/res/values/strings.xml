@@ -2,7 +2,7 @@
     <string name="app_name">MobilletSample</string>
 
     <string name="users_list_fragment_title">Github users</string>
-    <string name="single_user_fragment_title">Github Single User</string>
+    <string name="single_user_fragment_title">Github User Information</string>
 
     <string name="msg_users_list_is_empty">Empty!</string>
     <string name="msg_fetch_users_list_has_error">Has Error!</string>
