@@ -7,6 +7,7 @@ import ir.sdrv.mobilletsample.BuildConfig
 import ir.sdrv.mobilletsample.data.remote.api.GithubApi
 import ir.sdrv.mobilletsample.domain.api.GithubApiClient
 import ir.sdrv.mobilletsample.domain.api.GithubApiClientImpl
+import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -49,10 +50,19 @@ fun provideGson(): Gson {
 fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
 
     val builder = OkHttpClient.Builder()
+
     builder
         .connectTimeout(TOME_OUT, TimeUnit.SECONDS)
         .readTimeout(TOME_OUT, TimeUnit.SECONDS)
         .writeTimeout(TOME_OUT, TimeUnit.SECONDS)
+        .addInterceptor { chain ->
+            val requestBuilder = chain.request().newBuilder()
+            requestBuilder.addHeader(
+                "Authorization",
+                Credentials.basic("saeiddrv", "b29272629e9a6f98eac243c8cc6f4bc787a52ff2")
+            )
+            chain.proceed(requestBuilder.build())
+        }
 
     if (BuildConfig.DEBUG) {
         builder.addInterceptor(httpLoggingInterceptor)
