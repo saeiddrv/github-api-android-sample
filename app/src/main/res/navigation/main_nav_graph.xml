@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/main_nav_graph"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main_nav_graph"
             app:startDestination="@id/usersListFragment">
 
     <fragment android:id="@+id/usersListFragment"
               android:name="ir.sdrv.mobilletsample.presentation.view.UsersListFragment"
               android:label="@string/users_list_fragment_title"
-              tools:layout="@layout/users_list_fragment"/>
+              tools:layout="@layout/users_list_fragment">
+
+        <action android:id="@+id/action_usersListFragment_to_singleUserFragment"
+                app:destination="@id/singleUserFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/singleUserFragment"
+              android:name="ir.sdrv.mobilletsample.presentation.view.SingleUserFragment"
+              android:label="@string/single_user_fragment_title"
+              tools:layout="@layout/single_user_fragment">
+
+        <argument
+                android:name="username"
+                app:argType="string" />
+    </fragment>
 </navigation>

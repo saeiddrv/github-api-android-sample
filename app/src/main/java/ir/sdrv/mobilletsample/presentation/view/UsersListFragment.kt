@@ -9,16 +9,18 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ir.sdrv.mobilletsample.R
 import ir.sdrv.mobilletsample.data.remote.api.base.Status
+import ir.sdrv.mobilletsample.data.remote.api.models.GithubUserModel
 import ir.sdrv.mobilletsample.databinding.UsersListFragmentBinding
 import ir.sdrv.mobilletsample.presentation.datasource.UsersListAdapter
 import ir.sdrv.mobilletsample.presentation.viewmodel.UsersListViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class UsersListFragment : Fragment() {
+class UsersListFragment : Fragment(), UsersListAdapter.UsersListAdapterInteraction {
 
     private val usersListViewModel: UsersListViewModel by viewModel()
     private lateinit var itemViewer: RecyclerView
@@ -38,7 +40,7 @@ class UsersListFragment : Fragment() {
     }
 
     private fun initAdapterAndObserve() {
-        val usersListAdapter = UsersListAdapter()
+        val usersListAdapter = UsersListAdapter(this)
 
         itemViewer.layoutManager = LinearLayoutManager(context)
         itemViewer.adapter = usersListAdapter
@@ -58,6 +60,11 @@ class UsersListFragment : Fragment() {
         usersListViewModel.usersLiveData.observe(this, Observer {
             usersListAdapter.submitList(it)
         })
+    }
+
+    override fun onUserItemClick(githubUserModel: GithubUserModel) {
+        val direction = UsersListFragmentDirections.actionUsersListFragmentToSingleUserFragment(githubUserModel.login)
+        findNavController().navigate(direction)
     }
 
     private fun showMessage(textResourceId: Int) {

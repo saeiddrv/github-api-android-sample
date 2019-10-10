@@ -8,17 +8,23 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import ir.sdrv.mobilletsample.R
 
-class UsersListAdapter: PagedListAdapter<GithubUserModel, UsersListAdapter.UsersListViewHolder>(usersDiffCallback) {
+class UsersListAdapter(private val  listener: UsersListAdapterInteraction): PagedListAdapter<GithubUserModel, UsersListAdapter.UsersListViewHolder>(usersDiffCallback) {
 
     lateinit var context: Context
 
+    interface UsersListAdapterInteraction {
+        fun onUserItemClick(githubUserModel: GithubUserModel)
+    }
+
     inner class UsersListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val userItem: LinearLayout = itemView.findViewById(R.id.userItem)
         val imgAvatar: ImageView = itemView.findViewById(R.id.imgAvatar)
         val txtName: AppCompatTextView = itemView.findViewById(R.id.txtName)
         val txtHomeUrl: AppCompatTextView = itemView.findViewById(R.id.txtHomeUrl)
@@ -34,6 +40,10 @@ class UsersListAdapter: PagedListAdapter<GithubUserModel, UsersListAdapter.Users
 
             holder.txtName.text = it.login
             holder.txtHomeUrl.text = it.htmlUrl
+
+            holder.userItem.setOnClickListener {
+                listener.onUserItemClick(githubUserModel)
+            }
         }
     }
 
