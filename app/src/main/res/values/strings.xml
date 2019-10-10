@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MobilletSample</string>
+    <string name="app_name">Mobillet Sample</string>
 
     <string name="users_list_fragment_title">Github users</string>
     <string name="single_user_fragment_title">Github User Information</string>
