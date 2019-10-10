@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
+        <variable name="singleUserViewModel" type="ir.sdrv.mobilletsample.presentation.viewmodel.SingleUserViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ProgressBar
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:visibility="@{safeUnbox(singleUserViewModel.isWaiting) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="@{singleUserViewModel.errorMessage}"
+                android:visibility="@{singleUserViewModel.errorMessage == null ? View.GONE : View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:visibility="@{singleUserViewModel.githubUserModel == null ? View.GONE : View.VISIBLE}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.core.widget.NestedScrollView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/normal_margin">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:textSize="@dimen/normal_font"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="@string/lbl_user_name"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:visibility="@{TextUtils.isEmpty(singleUserViewModel.githubUserModel.name) ? View.GONE : View.VISIBLE}"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/small_font"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/small_margin"
+                                android:padding="@dimen/small_margin"
+                                android:visibility="@{TextUtils.isEmpty(singleUserViewModel.githubUserModel.name) ? View.GONE : View.VISIBLE}"
+                                android:text="@{singleUserViewModel.githubUserModel.name}"
+                                android:background="@drawable/home_url_text_view_background"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:textSize="@dimen/normal_font"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="@string/lbl_user_email"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:visibility="@{TextUtils.isEmpty(singleUserViewModel.githubUserModel.email) ? View.GONE : View.VISIBLE}"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/small_font"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/small_margin"
+                                android:padding="@dimen/small_margin"
+                                android:visibility="@{TextUtils.isEmpty(singleUserViewModel.githubUserModel.email) ? View.GONE : View.VISIBLE}"
+                                android:text="@{singleUserViewModel.githubUserModel.email}"
+                                android:background="@drawable/home_url_text_view_background"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:textSize="@dimen/normal_font"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="@string/lbl_user_bio"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:visibility="@{TextUtils.isEmpty(singleUserViewModel.githubUserModel.bio) ? View.GONE : View.VISIBLE}"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/small_font"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/small_margin"
+                                android:padding="@dimen/small_margin"
+                                android:visibility="@{TextUtils.isEmpty(singleUserViewModel.githubUserModel.bio) ? View.GONE : View.VISIBLE}"
+                                android:text="@{singleUserViewModel.githubUserModel.bio}"
+                                android:background="@drawable/home_url_text_view_background"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:textSize="@dimen/normal_font"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="@string/lbl_user_blog"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:visibility="@{TextUtils.isEmpty(singleUserViewModel.githubUserModel.blog) ? View.GONE : View.VISIBLE}"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/small_font"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/small_margin"
+                                android:padding="@dimen/small_margin"
+                                android:visibility="@{TextUtils.isEmpty(singleUserViewModel.githubUserModel.blog) ? View.GONE : View.VISIBLE}"
+                                android:text="@{singleUserViewModel.githubUserModel.blog}"
+                                android:background="@drawable/home_url_text_view_background"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:textSize="@dimen/normal_font"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="@string/lbl_user_company"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:visibility="@{TextUtils.isEmpty(singleUserViewModel.githubUserModel.company) ? View.GONE : View.VISIBLE}"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/small_font"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/small_margin"
+                                android:padding="@dimen/small_margin"
+                                android:visibility="@{TextUtils.isEmpty(singleUserViewModel.githubUserModel.company) ? View.GONE : View.VISIBLE}"
+                                android:text="@{singleUserViewModel.githubUserModel.company}"
+                                android:background="@drawable/home_url_text_view_background"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:textSize="@dimen/normal_font"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="@string/lbl_user_followers"
+                                android:layout_marginTop="@dimen/normal_margin"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/small_font"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/small_margin"
+                                android:padding="@dimen/small_margin"
+                                android:text="@{Integer.toString(singleUserViewModel.githubUserModel.followers)}"
+                                android:background="@drawable/home_url_text_view_background"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:textSize="@dimen/normal_font"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="@string/lbl_user_following"
+                                android:layout_marginTop="@dimen/normal_margin"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/small_font"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/small_margin"
+                                android:padding="@dimen/small_margin"
+                                android:text="@{Integer.toString(singleUserViewModel.githubUserModel.publicRepos)}"
+                                android:background="@drawable/home_url_text_view_background"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:textSize="@dimen/normal_font"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="@string/lbl_user_public_repos"
+                                android:layout_marginTop="@dimen/normal_margin"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/small_font"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/small_margin"
+                                android:padding="@dimen/small_margin"
+                                android:text="@{Integer.toString(singleUserViewModel.githubUserModel.publicRepos)}"
+                                android:background="@drawable/home_url_text_view_background"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:textSize="@dimen/normal_font"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="@string/lbl_user_public_gists"
+                                android:layout_marginTop="@dimen/normal_margin"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/small_font"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/small_margin"
+                                android:padding="@dimen/small_margin"
+                                android:text="@{Integer.toString(singleUserViewModel.githubUserModel.publicGists)}"
+                                android:background="@drawable/home_url_text_view_background"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:textSize="@dimen/normal_font"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="@string/lbl_user_created_at"
+                                android:layout_marginTop="@dimen/normal_margin"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/small_font"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/small_margin"
+                                android:padding="@dimen/small_margin"
+                                android:text="@{singleUserViewModel.githubUserModel.getCreatedDateAsString()}"
+                                android:background="@drawable/home_url_text_view_background"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:textSize="@dimen/normal_font"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="@string/lbl_user_updated_at"
+                                android:layout_marginTop="@dimen/normal_margin"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/small_font"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/small_margin"
+                                android:padding="@dimen/small_margin"
+                                android:text="@{singleUserViewModel.githubUserModel.getUpdatedDateAsString()}"
+                                android:background="@drawable/home_url_text_view_background"/>
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                <ImageView
+                        android:id="@+id/imgAvatar"
+                        android:layout_width="@dimen/avatar_size_large"
+                        android:layout_height="@dimen/avatar_size_large"
+                        android:scaleType="centerCrop"
+                        android:layout_gravity="center_horizontal"
+                        app:avatar="@{singleUserViewModel.githubUserModel.avatarUrl}"
+                        tools:ignore="ContentDescription"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_see_profile"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:drawablePadding="@dimen/small_margin"
+                        android:drawableStart="@drawable/ic_link_black"
+                        android:padding="@dimen/normal_margin"
+                        android:onClick="@{() -> singleUserViewModel.openInBrowser(singleUserViewModel.githubUserModel.htmlUrl)}"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
