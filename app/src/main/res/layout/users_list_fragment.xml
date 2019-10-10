@@ -15,13 +15,20 @@
                 android:id="@+id/itemViewer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="@{safeUnbox(usersListViewModel.isWaiting) ? View.GONE : View.VISIBLE}"
+                android:visibility="@{safeUnbox(usersListViewModel.isWaiting) || usersListViewModel.errorMessage != null ? View.GONE : View.VISIBLE}"
                 android:layout_margin="@dimen/small_margin"/>
 
         <ProgressBar
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:visibility="@{safeUnbox(usersListViewModel.isWaiting) ? View.VISIBLE : View.GONE}"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="@{usersListViewModel.errorMessage}"
+                android:visibility="@{usersListViewModel.errorMessage == null ? View.GONE : View.VISIBLE}"/>
 
     </LinearLayout>
 </layout>
