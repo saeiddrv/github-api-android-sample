@@ -180,7 +180,7 @@
                         android:textColor="@color/black"
                         android:layout_marginTop="@dimen/small_margin"
                         android:padding="@dimen/small_margin"
-                        android:text="@{Integer.toString(singleUserViewModel.githubUserModel.publicRepos)}"
+                        android:text="@{Integer.toString(singleUserViewModel.githubUserModel.following)}"
                         android:background="@drawable/home_url_text_view_background"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
