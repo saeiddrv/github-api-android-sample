@@ -15,3 +15,7 @@ Structure
 * Android Jetpack's Paging library
 * Glide, Image loading framework
 
+## License
+
+This template is licensed under the MIT License, which means you can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the template, subject to certain conditions.
+
